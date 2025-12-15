@@ -1,0 +1,7 @@
+body{
+    background: #75d1ff;
+    background: -webkit-linear-gradient(187deg, rgba(117, 209, 255, 1) 0%, rgba(57, 119, 219, 0.75) 50%, rgba(255, 157, 0, 1) 100%);
+    background: -moz-linear-gradient(187deg, rgba(117, 209, 255, 1) 0%, rgba(57, 119, 219, 0.75) 50%, rgba(255, 157, 0, 1) 100%);
+    background: linear-gradient(187deg, rgba(117, 209, 255, 1) 0%, rgba(57, 119, 219, 0.75) 50%, rgba(255, 157, 0, 1) 100%);
+}
+
