@@ -1,0 +1,48 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.5%;
+}
+
+.input-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.input-container input{
+    width: 30vw;
+    padding: 2.5%;
+    border: none;
+    background-color: rgba(65, 182, 250, 0.88);
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    color: white;
+}
+
+.input-container input:focus{
+    outline: none;
+}
+
+.input-container button{
+    padding: 2.5% 2.85%;
+    border: none;
+    cursor: pointer;
+    background-color: rgba(65, 182, 250, 0.88);
+    color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+}
+
+.input-container button:hover{
+    background-color: rgb(35, 168, 250);
+    color: #ccc;
+}
+
+.input-container button:active{
+    background-color: rgb(32, 151, 224);
+    color: #c2c2c2;
+    transform: scale(0.98);
+}
