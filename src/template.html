@@ -7,9 +7,7 @@
     <link rel="stylesheet" href="./style/general.css">
     <link rel="stylesheet" href="./style/header.css">
     <link rel="stylesheet" href="./style/main.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Audiowide&family=Lexend+Exa:wght@100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Sixtyfour&family=Tomorrow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,65535&display=swap" rel="stylesheet">
+  
 </head>
 <body>
     <div class="container">
@@ -20,6 +18,38 @@
             </div>
         </header>
         <main>
+            <section id="weather-dashboard">
+                <div class="dashboard-grid">
+                    <div class="weather-main-content">
+                        <div class="current-weather">
+                            <div class="location-time">
+                                <h1 class="location-name">Manila, Philippines</h1>
+                                <p class="local-time">10:20 AM</p>
+                                <p class="date">Thu, Dec 25 2025</p>
+                            </div>
+                            <div class="weather-tag">
+                                <h1 class="temperature"><svg width="80" height="80" viewBox="0 0 200 200" role="img" aria-label="Sun icon">
+                                                        <circle cx="100" cy="100" r="40" fill="#ffd54f" />
+                                                        <g stroke="#ffb300" stroke-width="6" stroke-linecap="round">
+                                                            <line x1="100" y1="8"  x2="100" y2="36"/>
+                                                            <line x1="100" y1="164" x2="100" y2="192"/>
+                                                            <line x1="8"   y1="100" x2="36"  y2="100"/>
+                                                            <line x1="164" y1="100" x2="192" y2="100"/>
+                                                            <line x1="30"  y1="30"  x2="48"  y2="48"/>
+                                                            <line x1="152" y1="152" x2="170" y2="170"/>
+                                                            <line x1="30"  y1="170" x2="48"  y2="152"/>
+                                                            <line x1="152" y1="48"  x2="170" y2="30"/>
+                                                        </g>
+                                                        </svg>
+                                                        <span>30&#8451;</span></h1>
+                                <p class="weather-condition">Sunny</p>
+                            </div>
+                        </div>
+                        <div class="weather-forecast"></div>
+                    </div>
+                    <div class="weather-sidebar"></div>
+                </div>
+            </section>
         </main>
     </div>
     <script src="index.js"></script>

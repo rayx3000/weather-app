@@ -1,0 +1,48 @@
+.dashboard-grid{
+    padding: 1.2%
+}
+
+.current-weather{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    width: 48vw;
+    gap: 7.5vw;
+    background: #75d1ff;
+    background: -webkit-linear-gradient(202deg, rgba(117, 209, 255, 1) 0%, rgba(57, 119, 219, 0.75) 50%, rgba(252, 215, 28, 1) 100%);
+    background: -moz-linear-gradient(202deg, rgba(117, 209, 255, 1) 0%, rgba(57, 119, 219, 0.75) 50%, rgba(252, 215, 28, 1) 100%);
+    background: linear-gradient(202deg, rgba(117, 209, 255, 1) 0%, rgba(57, 119, 219, 0.75) 50%, rgba(252, 215, 28, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#75D1FF", endColorstr="#FCD71C", GradientType=0);
+    padding: 2.5%;
+    border-radius: 20px;
+    color: #333;
+}
+
+.location-name{
+    font-family: "Audiowide", sans-serif;
+    color: rgb(0, 28, 88);
+}
+
+.weather-tag{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.temperature{
+    font-size: 2.5rem;
+    font-weight: bold;
+    font-family: "Sixtyfour", sans-serif;
+    color: rgb(0, 28, 88);
+    font-style: italic;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.weather-condition{
+    font-size: 1.2rem;
+    margin-top: -12px;
+}
