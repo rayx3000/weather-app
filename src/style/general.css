@@ -11,9 +11,13 @@ body{
     background: linear-gradient(187deg, rgba(117, 209, 255, 1) 0%, rgba(57, 119, 219, 0.75) 50%, rgb(0, 132, 255) 100%);
     min-height: 100vh;
     overflow-y: hidden;
+    padding: 0;
+    margin: 0;
 }
 
 .container{
     display: flex;
     flex-direction: column;
+    overflow-y: scroll;
+    height: 100vh;
 }

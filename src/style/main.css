@@ -2,6 +2,12 @@
     padding: 1.2%
 }
 
+.weather-main-content > div > h2{
+    font-family: "Audiowide", sans-serif;
+    color: #0d1247;
+    font-size: 1.75rem;
+}
+
 .current-weather{
     display: flex;
     align-items: center;
@@ -45,4 +51,70 @@
 .weather-condition{
     font-size: 1.2rem;
     margin-top: -12px;
+}
+
+.highlights-cards{
+    background: #0f7ea3;
+    background: -webkit-linear-gradient(34deg, rgba(15, 126, 163, 1) 0%, rgba(29, 178, 253, 1) 50%, rgba(252, 197, 69, 1) 100%);
+    background: -moz-linear-gradient(34deg, rgba(15, 126, 163, 1) 0%, rgba(29, 178, 253, 1) 50%, rgba(252, 197, 69, 1) 100%);
+    background: linear-gradient(34deg, rgba(15, 126, 163, 1) 0%, rgba(29, 178, 253, 1) 50%, rgba(252, 197, 69, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#0F7EA3", endColorstr="#FCC545", GradientType=0);
+    border-radius: 15px;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+    width: 50.75vw;
+}
+
+.highlight-card{
+    padding: 2.5%;
+    text-align: center;
+}
+
+.card-title{
+    color: rgb(0, 28, 88);
+    font-family: "Audiowide", sans-serif;
+    font-size: 1.2rem;
+}
+
+.highlight-card p{
+    font-size: 1.1rem;
+    color: #333;
+}
+
+.sun-times{
+    display: flex;
+    justify-content: space-around;
+    width: 50.75vw;
+}
+
+.sun-times > div{
+    padding: 2.5%;
+    text-align: center;
+    border-radius: 15px;
+    width: 20vw;
+}
+
+.sun-times > div h3{
+    color: rgb(0, 28, 88);
+    font-family: "Audiowide", sans-serif;
+    font-size: 1.5rem;
+}
+
+.sun-times > div p{
+    font-size: 1.2rem;
+    color: #333;
+}
+
+.sunrise{
+    background: #ffefa8;
+    background: radial-gradient(circle, rgba(255, 239, 168, 0.78) 0%, rgba(32, 167, 250, 1) 100%);
+}
+
+.sunset{
+    background: #0ac2ff;
+    background: radial-gradient(circle, rgba(10, 194, 255, 1) 0%, rgba(255, 170, 59, 0.78) 100%);
 }
