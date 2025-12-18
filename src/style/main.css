@@ -1,5 +1,12 @@
 .dashboard-grid{
-    padding: 1.2%
+    padding: 1.2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 5vw;
+}
+
+.weather-main-content{
+    width: 62vw;
 }
 
 .weather-main-content > div > h2{
@@ -12,7 +19,6 @@
     display: flex;
     align-items: center;
     justify-content: space-around;
-    width: 48vw;
     gap: 7.5vw;
     background: #75d1ff;
     background: -webkit-linear-gradient(202deg, rgba(117, 209, 255, 1) 0%, rgba(57, 119, 219, 0.75) 50%, rgba(252, 215, 28, 1) 100%);
@@ -66,7 +72,6 @@
     align-items: center;
     justify-content: space-around;
     gap: 10px;
-    width: 50.75vw;
 }
 
 .highlight-card{
@@ -88,7 +93,6 @@
 .sun-times{
     display: flex;
     justify-content: space-around;
-    width: 50.75vw;
 }
 
 .sun-times > div{
@@ -117,4 +121,39 @@
 .sunset{
     background: #0ac2ff;
     background: radial-gradient(circle, rgba(10, 194, 255, 1) 0%, rgba(255, 170, 59, 0.78) 100%);
+}
+
+.hourly-forecast-cards{
+    background: #2065d4;
+    background: -webkit-linear-gradient(18deg, rgba(32, 101, 212, 1) 0%, rgba(26, 123, 156, 0.75) 35%, rgba(0, 204, 255, 1) 100%);
+    background: -moz-linear-gradient(18deg, rgba(32, 101, 212, 1) 0%, rgba(26, 123, 156, 0.75) 35%, rgba(0, 204, 255, 1) 100%);
+    background: linear-gradient(18deg, rgba(32, 101, 212, 1) 0%, rgba(26, 123, 156, 0.75) 35%, rgba(0, 204, 255, 1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2065D4", endColorstr="#00CCFF", GradientType=0);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    max-height: 350px;
+    overflow-y: scroll;
+}
+
+.hourly-forecast-card{
+    display: grid;
+    grid-template-columns: 12vw 5vw 12vw;
+    align-items: center;
+    padding: 1.2%;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+}
+
+.hourly-forecast-card svg{
+    width: 50px;
+    height: 50px;
+}
+
+.weather-sidebar h2{
+    font-family: "Audiowide", sans-serif;
+    color: #0d1247;
 }
