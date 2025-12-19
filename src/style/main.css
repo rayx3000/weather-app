@@ -7,6 +7,7 @@
 
 .weather-main-content{
     width: 62vw;
+    margin-top: 30px;
 }
 
 .weather-main-content > div > h2{
@@ -123,13 +124,16 @@
     background: radial-gradient(circle, rgba(10, 194, 255, 1) 0%, rgba(255, 170, 59, 0.78) 100%);
 }
 
-.hourly-forecast-cards{
+.hourly-forecast-cards, .daily-forecast-cards{
     background: #2065d4;
     background: -webkit-linear-gradient(18deg, rgba(32, 101, 212, 1) 0%, rgba(26, 123, 156, 0.75) 35%, rgba(0, 204, 255, 1) 100%);
     background: -moz-linear-gradient(18deg, rgba(32, 101, 212, 1) 0%, rgba(26, 123, 156, 0.75) 35%, rgba(0, 204, 255, 1) 100%);
     background: linear-gradient(18deg, rgba(32, 101, 212, 1) 0%, rgba(26, 123, 156, 0.75) 35%, rgba(0, 204, 255, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2065D4", endColorstr="#00CCFF", GradientType=0);
     border-radius: 15px;
+}
+
+.hourly-forecast-cards{
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -153,7 +157,42 @@
     height: 50px;
 }
 
+.hourly-forecast-card > .forecast-time, .daily-forecast-card > span, .temp-range > .day-name{
+    font-family: 'Audiowide', sans-serif;
+    color: rgb(0, 28, 88);
+}
+
 .weather-sidebar h2{
     font-family: "Audiowide", sans-serif;
     color: #0d1247;
+}
+
+.daily-forecast-cards{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5vw;
+    padding: 2.5%;
+}
+
+.daily-forecast-card{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2%;
+    border-radius: 15px;
+    gap: 8px;
+    background: #4f82e0;
+    background: linear-gradient(202deg, rgba(79, 130, 224, 1) 0%, rgba(44, 181, 199, 0.75) 50%, rgb(12, 81, 168) 100%);
+}
+
+.temp-range{
+    display: flex;
+    gap: 15px;
+}
+
+.temp-high, .temp-low, .forecast-temp{
+    color: #0d1247;
+    font-family: "Sixtyfour", sans-serif;
+    font-style: italic;
 }
