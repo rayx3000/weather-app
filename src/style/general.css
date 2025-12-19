@@ -4,6 +4,11 @@
     font-family: "Tomorrow", Consolas, sans-serif;
 }
 
+:root{
+    --scroll-color-1: rgb(32, 84, 255);
+    --scroll-color-2:  rgba(117, 193, 255, 1);
+}
+
 body{
     background: #75d1ff;
     background: -webkit-linear-gradient(187deg, rgba(117, 209, 255, 1) 0%, rgba(57, 119, 219, 0.75) 50%, rgb(0, 132, 255) 100%);
@@ -22,52 +27,38 @@ body{
     height: 100vh;
 }
 
-*{
-    font-family: 'Rubik', Consolas;
-}
-
-body{
-    background: #12a8ff;
-    background: -webkit-linear-gradient(90deg, rgb(2, 110, 199) 0%, rgba(117, 193, 255, 0.8) 50%, rgb(2, 110, 199)  100%);
-    background: -moz-linear-gradient(90deg, rgb(2, 110, 199)  0%,  rgba(117, 193, 255, 0.8)  50%, rgb(2, 110, 199) 100%);
-    background: linear-gradient(90deg, rgb(2, 110, 199) 0%, rgba(117, 193, 255, 0.8)50%, rgb(2, 110, 199) 100%);
-    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#FFB012", endColorstr="#FFB012", GradientType=1);
-    overflow-x: hidden;
-    padding: 0;
-}
-
 .scroll::-webkit-scrollbar {
     width: 8px;
 }
 
 .scroll::-webkit-scrollbar-track {
-    background: rgb(5, 134, 240);
+    background: transparent;
     border-radius: 10px;
     margin: 7.5px 0;
 }
 
 .scroll::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #0586f0, #1180ff);
+    background: linear-gradient(45deg, var(--scroll-color-1), var(--scroll-color-2));
     border-radius: 10px;
-    box-shadow: 0 0 20px #0586f0, 0 0 40px #1180ff;
+    box-shadow: 0 0 20px var(--scroll-color-1), 0 0 40px var(--scroll-color-2);
     animation: neonPulse 2s ease-in-out infinite alternate;
     min-height: 20px;
 }
 
 .scroll::-webkit-scrollbar-thumb:hover {
-    box-shadow: 0 0 30px#0586f0, 0 0 60px #1180ff;
+    box-shadow: 0 0 30px var(--scroll-color-1), 0 0 60px var(--scroll-color-2);
+    animation: neonPulse 2s ease-in-out infinite alternate;
 }
 
 .scroll::-webkit-scrollbar-corner {
     background: transparent;
 }
 
-/* Add the missing neonPulse animation */
 @keyframes neonPulse {
     from { 
-        box-shadow: 0 0 20px #0586f0, 0 0 40px #1180ff;
+        box-shadow: 0 0 20px var(--scroll-color-1), 0 0 40px var(--scroll-color-2);
     }
     to { 
-        box-shadow: 0 0 30px #0586f0, 0 0 60px #1180ff;
+        box-shadow: 0 0 30px var(--scroll-color-1), 0 0 60px var(--scroll-color-2);
     }
 }
