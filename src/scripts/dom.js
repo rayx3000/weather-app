@@ -3,16 +3,32 @@ const displayWeatherData = (data) => {
         return;
     }
 
-    const { temperature, description, humidity, windSpeed, cityName, country, sunrise, sunset } = data;
+    const { temperature, description, humidity, windSpeed, cityName, country, sunrise, sunset, icon, visibility } = data;
 
     document.querySelector('.location-name').textContent = `${cityName}, ${country}`;
-    document.querySelector('.temperature span').innerHTML = `${Math.round(temperature - 273.15)}&#8451;`;
+    document.querySelector('#temperature').innerHTML = `${Math.round(temperature - 273.15)}&#8451;`;
     document.querySelector('.weather-condition').textContent = description.length > 20 ? `${description.slice(0, 20)}...` : description;
-    
+
+    const iconContainer = document.querySelector('#weather-icon');
+    if (iconContainer.tagName === 'IMG') {
+        const div = document.createElement('div');
+        div.id = 'weather-icon';
+        div.className = iconContainer.className;
+        div.innerHTML = icon;
+        iconContainer.replaceWith(div);
+    } else {
+        iconContainer.innerHTML = icon;
+    }
+
+    const svg = document.querySelector('#weather-icon svg');
+    if (svg && !svg.hasAttribute('width')) svg.setAttribute('width', '64');
+    if (svg && !svg.hasAttribute('height')) svg.setAttribute('height', '64');
+
     const highlightCards = document.querySelectorAll('.highlight-card');
     highlightCards[0].querySelector('.card-value').textContent = `${Math.round(temperature - 273.15)}℃`;
     highlightCards[1].querySelector('.card-value').textContent = `${windSpeed} km/h`;
     highlightCards[2].querySelector('.card-value').textContent = `${humidity}%`;
+    highlightCards[3].querySelector('.card-value').textContent = `${visibility / 1000} km`;
 
     const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: true };
     document.getElementById('sunrise-text').textContent = new Date(sunrise * 1000).toLocaleTimeString('en-US', timeOptions);

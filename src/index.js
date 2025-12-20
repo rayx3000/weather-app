@@ -2,6 +2,7 @@ import "./style/general.css";
 import "./style/header.css";
 import "./style/main.css";
 import { displayWeatherData, displayDateTime } from "./scripts/dom.js";
+import { weatherSvg } from "./scripts/svg.js";
 
 const apiKey = 'c10d5fa98716e518a276928d5ebd97a0'; 
 
@@ -22,6 +23,27 @@ async function getWeatherData(city) {
 async function processWeatherData(city) {
     const rawData = await getWeatherData(city);
     if (rawData && rawData.main && rawData.weather && rawData.wind && rawData.sys) {
+        const iconCode = rawData.weather[0].icon;
+        const iconMap = {
+            '01d': weatherSvg.sun,
+            '01n': weatherSvg.nightClear,
+            '02d': weatherSvg.partlyCloudy,
+            '02n': weatherSvg.nightPartlyCloudy,
+            '03d': weatherSvg.cloudy,
+            '03n': weatherSvg.cloudy,
+            '04d': weatherSvg.overcast,
+            '04n': weatherSvg.overcast,
+            '09d': weatherSvg.drizzle,
+            '09n': weatherSvg.drizzle,
+            '10d': weatherSvg.rain,
+            '10n': weatherSvg.rain,
+            '11d': weatherSvg.thunderstorm,
+            '11n': weatherSvg.thunderstorm,
+            '13d': weatherSvg.snow,
+            '13n': weatherSvg.snow,
+            '50d': weatherSvg.mist,
+            '50n': weatherSvg.mist
+        };
         const processedData = {
             temperature: rawData.main.temp,
             description: rawData.weather[0].description,
@@ -30,7 +52,9 @@ async function processWeatherData(city) {
             cityName: rawData.name,
             country: rawData.sys.country,
             sunrise: rawData.sys.sunrise,
-            sunset: rawData.sys.sunset
+            sunset: rawData.sys.sunset,
+            icon: iconMap[iconCode] || weatherSvg.sun,
+            visibility: rawData.visibility
         };
         return processedData;
     }
