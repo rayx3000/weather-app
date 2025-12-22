@@ -44,4 +44,23 @@ const displayDateTime = () => {
     document.querySelector('.date').textContent = now.toLocaleDateString('en-US', dateOptions);
 };
 
-export { displayWeatherData, displayDateTime };
+const displayHourlyForecast = (forecastData) => {
+    const hourlyForcastCards = document.querySelector('.hourly-forecast-cards');
+    hourlyForcastCards.innerHTML = '';
+
+    let forecastCard = '';
+    
+    forecastData.slice(0, 8).forEach((forecast) => {
+        const { temperature, icon, time } = forecast;
+        forecastCard += `<div class="hourly-forecast-card">
+                                    <span class="forecast-time">${time}</span>
+                                    ${icon}
+                                    <span class="forecast-temp">${temperature}°C</span>
+                            </div>`
+    });
+
+    hourlyForcastCards.innerHTML = forecastCard;
+            
+};
+
+export { displayWeatherData, displayDateTime, displayHourlyForecast };

@@ -139,7 +139,7 @@
     align-items: center;
     justify-content: center;
     overflow-x: hidden;
-    max-height: 350px;
+    max-height: 320px;
     overflow-y: scroll;
 }
 
