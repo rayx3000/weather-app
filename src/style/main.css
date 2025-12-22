@@ -169,9 +169,14 @@
 
 .daily-forecast-cards{
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 12vw 12vw;
     gap: 1.5vw;
     padding: 2.5%;
+    justify-content: center;
+    align-items: center;
+    max-height: 350px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .daily-forecast-card{
@@ -193,11 +198,99 @@
 
 .temp-range{
     display: flex;
-    gap: 15px;
+    gap: 1vw;
 }
 
 .temp-high, .temp-low, .forecast-temp{
     color: #0d1247;
     font-family: "Sixtyfour", sans-serif;
     font-style: italic;
+}
+
+@media(max-width: 1150px) {
+    .daily-forecast-cards{
+        grid-template-columns: 13.5vw 13.5vw;
+    }
+    .daily-forecast-card{
+        padding: 5%;
+        font-size: 0.9rem;
+        font-weight: normal;
+    }
+}
+
+@media(max-width: 1000px) {
+    .temp-range{
+        gap: 0.2vw;
+        font-size: 0.8rem;
+    }
+}
+
+@media(max-width: 855px){
+    .daily-forecast-cards{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width: 800px) {
+    .weather-main-content > div > h2{
+        font-size: 1.5rem;
+    }
+
+    .sun-times > div h3{
+        font-size: 1.2rem;
+    }
+
+    .sun-times > div p{
+        font-size: 0.9rem;
+    }
+
+    .current-weather{
+        gap: 2.5vw;
+    }
+}
+
+@media(max-width: 705px) {
+    .dashboard-grid{
+        grid-template-columns: 1fr;
+    }
+
+    .weather-main-content{
+        width: auto;
+    }
+
+    .hourly-forecast-cards{
+        width: 58.7vw;
+    }
+
+    .hourly-forecast-card{
+        gap: 6.5vw;
+    }
+
+    .daily-forecast-cards{
+        grid-template-columns: 1fr 1fr;
+        width: 55vw;
+    }
+
+    .weather-sidebar{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        gap: 50px;
+    }
+}
+
+@media(max-width: 620px) {
+    .hourly-forecast-cards{
+        width: 68.5vw;
+    }
+
+    .daily-forecast-cards{
+        width: 65vw;
+    }
+
+    .hourly-forecast-card{
+        gap: 12.5vw;
+    }
 }
