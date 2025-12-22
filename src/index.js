@@ -1,6 +1,7 @@
 import "./style/general.css";
 import "./style/header.css";
 import "./style/main.css";
+import "./style/dialog.css";
 import { displayWeatherData, displayDateTime, displayHourlyForecast, displayDailyForecast } from "./scripts/dom.js";
 import { weatherSvg } from "./scripts/svg.js";
 
@@ -200,14 +201,15 @@ async function search() {
         searchButton.classList.add('loading');
         searchButton.disabled = true;
         try {
-            const { processedData, hourlyForecast, dailyForecast, units } = await processWeatherData(state.city, state.units);
-            if (processedData) {
+            const weatherData = await processWeatherData(state.city, state.units);
+            if (weatherData) {
+                const { processedData, hourlyForecast, dailyForecast, units } = weatherData;
                 displayWeatherData(processedData, unitSymbols[units]);
                 displayHourlyForecast(hourlyForecast, unitSymbols[units]);
                 displayDailyForecast(dailyForecast, unitSymbols[units]);
                 displayDateTime();
             } else {
-                alert('City not found');
+                showDialog('Sorry! City Not Found');
             }
         } finally {
             searchButton.classList.remove('loading');
@@ -218,15 +220,28 @@ async function search() {
 }
 
 async function fetchAndDisplayWeather(city, units) {
-    const { processedData, hourlyForecast, dailyForecast } = await processWeatherData(city, units);
-    if (processedData) {
+    const weatherData = await processWeatherData(city, units);
+    if (weatherData) {
+        const { processedData, hourlyForecast, dailyForecast } = weatherData;
         displayWeatherData(processedData, unitSymbols[units]);
         displayHourlyForecast(hourlyForecast, unitSymbols[units]);
         displayDailyForecast(dailyForecast, unitSymbols[units]);
         displayDateTime();
     } else {
-        alert('City not found');
+        showDialog('City not found');
     }
+}
+
+function showDialog(message) {
+    const dialog = document.getElementById('error-dialog');
+    const messageElement = document.getElementById('error-message');
+    messageElement.textContent = message;
+    dialog.style.display = 'flex';
+}
+
+function closeDialog() {
+    const dialog = document.getElementById('error-dialog');
+    dialog.style.display = 'none';
 }
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -234,7 +249,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const searchButton = document.getElementById('search-button');
     const cityInput = document.getElementById('city-input');
     const unitSelect = document.getElementById('unit-select');
+    const closeButton = document.getElementById('close-dialog');
 
+    closeButton.addEventListener('click', closeDialog);
     searchButton.addEventListener('click', search);
     cityInput.addEventListener('keydown', (event) => {
         if (event.key === 'Enter') {
@@ -249,4 +266,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchAndDisplayWeather(state.city, state.units);
 });
-

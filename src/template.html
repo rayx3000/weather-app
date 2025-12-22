@@ -18,9 +18,9 @@
             </div>
             <h1>RayxWeather</h1>
             <select id="unit-select">
-                <option value="metric">Celsius (°C)</option>
-                <option value="imperial">Fahrenheit (°F)</option>
-                <option value="standard">Kelvin (K)</option>
+                <option value="metric"><span>Celsius </span> °C</option>
+                <option value="imperial"><span>Fahrenheit </span> °F</option>
+                <option value="standard"><span>Kelvin </span> K</option>
             </select>
         </header>
         <main>
@@ -92,5 +92,11 @@
     </div>
     <script src="index.js"></script>
     <script src="https://kit.fontawesome.com/98e4552128.js" crossorigin="anonymous"></script>
+    <div id="error-dialog" class="dialog-overlay" style="display: none;">
+        <div class="dialog-content">
+            <h2 id="error-message"></h2>
+            <button id="close-dialog">Close</button>
+        </div>
+    </div>
 </body>
 </html>

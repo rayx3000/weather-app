@@ -14,7 +14,7 @@ export const weatherSvg = {
                                     </svg>`,
     partlyCloudy: `<svg viewBox="0 0 64 64" aria-label="Partly cloudy" role="img">
         <!-- sun behind -->
-        <circle cx="18" cy="18" r="8" fill="var(--sun-core)"/>
+        <circle cx="18" cy="18" r="8" fill="#FFC107"/>
         <g>
           <path d="M12 34c-4 0-6-4-2-8 2-6 10-6 14-2 8-2 16 2 14 10 6 0 10 4 6 8H12z"
                 fill="#E0E0E0"/>
