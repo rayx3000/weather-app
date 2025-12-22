@@ -104,7 +104,7 @@ function processHourlyForecast(forecastData) {
         '50n': weatherSvg.mist
     };
 
-    return forecastData.list.slice(0, 8).map(item => {
+    return forecastData.list.slice(0, 7).map(item => {
         const date = new Date(item.dt_txt);
         const time = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
         const iconCode = item.weather[0].icon;

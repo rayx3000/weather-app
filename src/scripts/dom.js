@@ -50,7 +50,7 @@ const displayHourlyForecast = (forecastData) => {
 
     let forecastCard = '';
     
-    forecastData.slice(0, 8).forEach((forecast) => {
+    forecastData.slice(0, 7).forEach((forecast) => {
         const { temperature, icon, time } = forecast;
         forecastCard += `<div class="hourly-forecast-card">
                                     <span class="forecast-time">${time}</span>
