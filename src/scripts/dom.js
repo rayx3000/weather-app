@@ -1,12 +1,12 @@
-const displayWeatherData = (data) => {
+const displayWeatherData = (data, unitSymbol) => {
     if (!data) {
         return;
     }
 
-    const { temperature, description, humidity, windSpeed, cityName, country, sunrise, sunset, icon, visibility } = data;
+    const { temperature, feels_like, description, humidity, windSpeed, cityName, country, sunrise, sunset, icon, visibility } = data;
 
     document.querySelector('.location-name').textContent = `${cityName}, ${country}`;
-    document.querySelector('#temperature').innerHTML = `${Math.round(temperature - 273.15)}&#8451;`;
+    document.querySelector('#temperature').innerHTML = `${Math.round(temperature)}${unitSymbol}`;
     document.querySelector('.weather-condition').textContent = description.length > 20 ? `${description.slice(0, 20)}...` : description;
 
     const iconContainer = document.querySelector('#weather-icon');
@@ -25,7 +25,7 @@ const displayWeatherData = (data) => {
     if (svg && !svg.hasAttribute('height')) svg.setAttribute('height', '64');
 
     const highlightCards = document.querySelectorAll('.highlight-card');
-    highlightCards[0].querySelector('.card-value').textContent = `${Math.round(temperature - 273.15)}℃`;
+    highlightCards[0].querySelector('.card-value').textContent = `${Math.round(feels_like)}${unitSymbol}`;
     highlightCards[1].querySelector('.card-value').textContent = `${windSpeed} km/h`;
     highlightCards[2].querySelector('.card-value').textContent = `${humidity}%`;
     highlightCards[3].querySelector('.card-value').textContent = `${visibility / 1000} km`;
@@ -44,7 +44,7 @@ const displayDateTime = () => {
     document.querySelector('.date').textContent = now.toLocaleDateString('en-US', dateOptions);
 };
 
-const displayHourlyForecast = (forecastData) => {
+const displayHourlyForecast = (forecastData, unitSymbol) => {
     const hourlyForcastCards = document.querySelector('.hourly-forecast-cards');
     hourlyForcastCards.innerHTML = '';
 
@@ -55,7 +55,7 @@ const displayHourlyForecast = (forecastData) => {
         forecastCard += `<div class="hourly-forecast-card">
                                     <span class="forecast-time">${time}</span>
                                     ${icon}
-                                    <span class="forecast-temp">${temperature}°C</span>
+                                    <span class="forecast-temp">${temperature}${unitSymbol}</span>
                             </div>`
     });
 
@@ -63,7 +63,7 @@ const displayHourlyForecast = (forecastData) => {
             
 };
 
-const displayDailyForecast = (forecastData) => {
+const displayDailyForecast = (forecastData, unitSymbol) => {
     const dailyForecastCards = document.querySelector('.daily-forecast-cards');
     dailyForecastCards.innerHTML = '';
 
@@ -75,8 +75,8 @@ const displayDailyForecast = (forecastData) => {
                                     <span class="day-name">${day}, ${date}</span>
                                     ${icon}
                                     <div class="temp-range">
-                                        <span class="temp-high">${highTemp}°C</span>
-                                        <span class="temp-low">${lowTemp}°C</span>
+                                        <span class="temp-high">${highTemp}${unitSymbol}</span>
+                                        <span class="temp-low">${lowTemp}${unitSymbol}</span>
                                     </div>
                                 </div>`
     });

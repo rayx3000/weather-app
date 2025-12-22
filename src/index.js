@@ -4,11 +4,22 @@ import "./style/main.css";
 import { displayWeatherData, displayDateTime, displayHourlyForecast, displayDailyForecast } from "./scripts/dom.js";
 import { weatherSvg } from "./scripts/svg.js";
 
-const apiKey = 'c10d5fa98716e518a276928d5ebd97a0'; 
+const apiKey = 'c10d5fa98716e518a276928d5ebd97a0';
 
-async function getWeatherData(city) {
+const state = {
+    city: "Manila",
+    units: "metric"
+};
+
+const unitSymbols = {
+    metric: "°C",
+    imperial: "°F",
+    standard: "K"
+};
+
+async function getWeatherData(city, units) {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=${units}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -20,9 +31,9 @@ async function getWeatherData(city) {
     }
 }
 
-async function getForecastData(city) {
+async function getForecastData(city, units) {
     try {
-        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}`);
+        const response = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=${units}`);
         if (!response.ok) {
             throw new Error(`HTTP error! status: ${response.status}`);
         }
@@ -34,9 +45,9 @@ async function getForecastData(city) {
     }
 }
 
-async function processWeatherData(city) {
-    const rawData = await getWeatherData(city);
-    const forecastData = await getForecastData(city);
+async function processWeatherData(city, units) {
+    const rawData = await getWeatherData(city, units);
+    const forecastData = await getForecastData(city, units);
     if (rawData && rawData.main && rawData.weather && rawData.wind && rawData.sys) {
         const iconCode = rawData.weather[0].icon;
         const iconMap = {
@@ -61,6 +72,7 @@ async function processWeatherData(city) {
         };
         const processedData = {
             temperature: rawData.main.temp,
+            feels_like: rawData.main.feels_like,
             description: rawData.weather[0].description,
             humidity: rawData.main.humidity,
             windSpeed: rawData.wind.speed,
@@ -73,7 +85,7 @@ async function processWeatherData(city) {
         };
         const hourlyForecast = processHourlyForecast(forecastData);
         const dailyForecast = processDailyForecast(forecastData);
-        return { processedData, hourlyForecast, dailyForecast };
+        return { processedData, hourlyForecast, dailyForecast, units };
     }
     return null;
 }
@@ -111,7 +123,7 @@ function processHourlyForecast(forecastData) {
         return {
             time: time,
             icon: iconMap[iconCode] || weatherSvg.sun,
-            temperature: Math.round(item.main.temp - 273.15)
+            temperature: Math.round(item.main.temp)
         };
     });
 }
@@ -162,8 +174,8 @@ function processDailyForecast(forecastData) {
     return Object.keys(dailyData).slice(0, 5).map(day => {
         const dayTemps = dailyData[day].temps;
         const dayIcons = dailyData[day].icons;
-        const highTemp = Math.round(Math.max(...dayTemps) - 273.15);
-        const lowTemp = Math.round(Math.min(...dayTemps) - 273.15);
+        const highTemp = Math.round(Math.max(...dayTemps));
+        const lowTemp = Math.round(Math.min(...dayTemps));
         const iconCode = dayIcons[Math.floor(dayIcons.length / 2)];
         const date = new Date(day);
         const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
@@ -184,14 +196,15 @@ async function search() {
     const searchButton = document.getElementById('search-button');
     const city = cityInput.value;
     if (city) {
+        state.city = city;
         searchButton.classList.add('loading');
         searchButton.disabled = true;
         try {
-            const { processedData, hourlyForecast, dailyForecast } = await processWeatherData(city);
+            const { processedData, hourlyForecast, dailyForecast, units } = await processWeatherData(state.city, state.units);
             if (processedData) {
-                displayWeatherData(processedData);
-                displayHourlyForecast(hourlyForecast);
-                displayDailyForecast(dailyForecast);
+                displayWeatherData(processedData, unitSymbols[units]);
+                displayHourlyForecast(hourlyForecast, unitSymbols[units]);
+                displayDailyForecast(dailyForecast, unitSymbols[units]);
                 displayDateTime();
             } else {
                 alert('City not found');
@@ -204,10 +217,23 @@ async function search() {
     }
 }
 
+async function fetchAndDisplayWeather(city, units) {
+    const { processedData, hourlyForecast, dailyForecast } = await processWeatherData(city, units);
+    if (processedData) {
+        displayWeatherData(processedData, unitSymbols[units]);
+        displayHourlyForecast(hourlyForecast, unitSymbols[units]);
+        displayDailyForecast(dailyForecast, unitSymbols[units]);
+        displayDateTime();
+    } else {
+        alert('City not found');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     displayDateTime();
     const searchButton = document.getElementById('search-button');
     const cityInput = document.getElementById('city-input');
+    const unitSelect = document.getElementById('unit-select');
 
     searchButton.addEventListener('click', search);
     cityInput.addEventListener('keydown', (event) => {
@@ -216,16 +242,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    (async () => {
-        const { processedData, hourlyForecast, dailyForecast } = await processWeatherData("Manila");
-        if (processedData) {
-            displayWeatherData(processedData);
-            displayHourlyForecast(hourlyForecast);
-            displayDailyForecast(dailyForecast);
-            displayDateTime();
-        } else {
-            alert('City not found');
-        }
-    })();
+    unitSelect.addEventListener('change', async () => {
+        state.units = unitSelect.value;
+        await fetchAndDisplayWeather(state.city, state.units);
+    });
+
+    fetchAndDisplayWeather(state.city, state.units);
 });
 
