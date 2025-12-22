@@ -63,4 +63,25 @@ const displayHourlyForecast = (forecastData) => {
             
 };
 
-export { displayWeatherData, displayDateTime, displayHourlyForecast };
+const displayDailyForecast = (forecastData) => {
+    const dailyForecastCards = document.querySelector('.daily-forecast-cards');
+    dailyForecastCards.innerHTML = '';
+
+    let forecastCard = '';
+
+    forecastData.forEach((forecast) => {
+        const { day, date, highTemp, lowTemp, icon } = forecast;
+        forecastCard += `<div class="daily-forecast-card">
+                                    <span class="day-name">${day}, ${date}</span>
+                                    ${icon}
+                                    <div class="temp-range">
+                                        <span class="temp-high">${highTemp}°C</span>
+                                        <span class="temp-low">${lowTemp}°C</span>
+                                    </div>
+                                </div>`
+    });
+
+    dailyForecastCards.innerHTML = forecastCard;
+}
+
+export { displayWeatherData, displayDateTime, displayHourlyForecast, displayDailyForecast };

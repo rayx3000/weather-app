@@ -1,7 +1,7 @@
 import "./style/general.css";
 import "./style/header.css";
 import "./style/main.css";
-import { displayWeatherData, displayDateTime, displayHourlyForecast } from "./scripts/dom.js";
+import { displayWeatherData, displayDateTime, displayHourlyForecast, displayDailyForecast } from "./scripts/dom.js";
 import { weatherSvg } from "./scripts/svg.js";
 
 const apiKey = 'c10d5fa98716e518a276928d5ebd97a0'; 
@@ -72,7 +72,8 @@ async function processWeatherData(city) {
             visibility: rawData.visibility,
         };
         const hourlyForecast = processHourlyForecast(forecastData);
-        return { processedData, hourlyForecast };
+        const dailyForecast = processDailyForecast(forecastData);
+        return { processedData, hourlyForecast, dailyForecast };
     }
     return null;
 }
@@ -103,7 +104,7 @@ function processHourlyForecast(forecastData) {
         '50n': weatherSvg.mist
     };
 
-    return forecastData.list.slice(0, 7).map(item => {
+    return forecastData.list.slice(0, 8).map(item => {
         const date = new Date(item.dt_txt);
         const time = date.toLocaleTimeString('en-US', { hour: 'numeric', hour12: true });
         const iconCode = item.weather[0].icon;
@@ -111,6 +112,69 @@ function processHourlyForecast(forecastData) {
             time: time,
             icon: iconMap[iconCode] || weatherSvg.sun,
             temperature: Math.round(item.main.temp - 273.15)
+        };
+    });
+}
+
+function processDailyForecast(forecastData) {
+    if (!forecastData || !forecastData.list) {
+        return null;
+    }
+
+    const iconMap = {
+        '01d': weatherSvg.sun,
+        '01n': weatherSvg.nightClear,
+        '02d': weatherSvg.partlyCloudy,
+        '02n': weatherSvg.nightPartlyCloudy,
+        '03d': weatherSvg.cloudy,
+        '03n': weatherSvg.cloudy,
+        '04d': weatherSvg.overcast,
+        '04n': weatherSvg.overcast,
+        '09d': weatherSvg.drizzle,
+        '09n': weatherSvg.drizzle,
+        '10d': weatherSvg.rain,
+        '10n': weatherSvg.rain,
+        '11d': weatherSvg.thunderstorm,
+        '11n': weatherSvg.thunderstorm,
+        '13d': weatherSvg.snow,
+        '13n': weatherSvg.snow,
+        '50d': weatherSvg.mist,
+        '50n': weatherSvg.mist
+    };
+
+    const dailyData = {};
+
+    forecastData.list.forEach(item => {
+        const date = new Date(item.dt_txt);
+        const day = date.toISOString().split('T')[0];
+
+        if (!dailyData[day]) {
+            dailyData[day] = {
+                temps: [],
+                icons: []
+            };
+        }
+
+        dailyData[day].temps.push(item.main.temp);
+        dailyData[day].icons.push(item.weather[0].icon);
+    });
+
+    return Object.keys(dailyData).slice(0, 5).map(day => {
+        const dayTemps = dailyData[day].temps;
+        const dayIcons = dailyData[day].icons;
+        const highTemp = Math.round(Math.max(...dayTemps) - 273.15);
+        const lowTemp = Math.round(Math.min(...dayTemps) - 273.15);
+        const iconCode = dayIcons[Math.floor(dayIcons.length / 2)];
+        const date = new Date(day);
+        const dayName = date.toLocaleDateString('en-US', { weekday: 'short' });
+        const monthDate = date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+
+        return {
+            day: dayName,
+            date: monthDate,
+            highTemp: highTemp,
+            lowTemp: lowTemp,
+            icon: iconMap[iconCode] || weatherSvg.sun
         };
     });
 }
@@ -123,10 +187,11 @@ async function search() {
         searchButton.classList.add('loading');
         searchButton.disabled = true;
         try {
-            const { processedData, hourlyForecast } = await processWeatherData(city);
+            const { processedData, hourlyForecast, dailyForecast } = await processWeatherData(city);
             if (processedData) {
                 displayWeatherData(processedData);
                 displayHourlyForecast(hourlyForecast);
+                displayDailyForecast(dailyForecast);
                 displayDateTime();
             } else {
                 alert('City not found');
@@ -152,10 +217,11 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     (async () => {
-        const { processedData, hourlyForecast } = await processWeatherData("Manila");
+        const { processedData, hourlyForecast, dailyForecast } = await processWeatherData("Manila");
         if (processedData) {
             displayWeatherData(processedData);
             displayHourlyForecast(hourlyForecast);
+            displayDailyForecast(dailyForecast);
             displayDateTime();
         } else {
             alert('City not found');
