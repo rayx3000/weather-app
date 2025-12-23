@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RayxWeather</title>
+    <link rel="stylesheet" href="bdc2c9982c0f8cc40c75.css">
+    <link rel="stylesheet" href="c6e3d4a05bf3e75a369d.css">
+    <link rel="stylesheet" href="d1d9066262962261faf0.css">
+    <link rel="icon" type="image/png" href="69ab6a0dcd52f4986138.png">
+<script defer src="main.js"></script></head>
+<body>
+    <div class="container scroll">
+        <header>
+            <div class="input-container">
+                <input type="text" id="city-input" placeholder="Enter city name">
+                <button id="search-button"><i class="fa-brands fa-searchengin"></i></button>
+            </div>
+            <h1>RayxWeather</h1>
+            <select id="unit-select">
+                <option value="metric" data-short="°C" data-long="Celsius °C">Celsius °C</option>
+                <option value="imperial" data-short="°F" data-long="Fahrenheit °F">Fahrenheit °F</option>
+                <option value="standard" data-short="K" data-long="Kelvin K">Kelvin K</option>
+            </select>
+        </header>
+        <main>
+            <section id="weather-dashboard">
+                <div class="dashboard-grid">
+                    <div class="weather-main-content">
+                        <div class="current-weather">
+                            <div class="location-time">
+                                <h1 class="location-name"></h1>
+                                <p class="local-time"></p>
+                                <p class="date"></p>
+                            </div>
+                            <div class="weather-tag">
+                                <h1 class="temperature">
+                                    <span id="weather-icon"></span>
+                                    <span id="temperature"></span>
+                                </h1>
+                                <p class="weather-condition"></p>
+                            </div>
+                        </div>
+                        <div class="weather-highlights">
+                            <h2>Weather Highlights</h2>
+                            <div class="highlights-cards">
+                                <div class="highlight-card">
+                                    <h3 class="card-title">Feels Like</h3>
+                                    <p class="card-value"></p>
+                                </div>
+                                <div class="highlight-card">
+                                    <h3 class="card-title">Wind Status</h3>
+                                    <p class="card-value"></p>
+                                </div>  
+                                <div class="highlight-card">
+                                    <h3 class="card-title">Humidity</h3>
+                                    <p class="card-value"></p>
+                                </div>
+                                <div class="highlight-card">
+                                    <h3 class="card-title">Visibility</h3>
+                                    <p class="card-value"></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sunset-sunrise">
+                            <h2>Sunset & Sunrise</h2>
+                            <div class="sun-times">
+                                <div class="sunrise">
+                                    <h3>Sunrise</h3>
+                                    <p id="sunrise-text"></p>
+                                </div>
+                                <div class="sunset">
+                                    <h3>Sunset</h3>
+                                    <p id="sunset-text"></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div> 
+                    <div class="weather-sidebar">
+                        <div class="weather-hourly-forecast">
+                            <h2>Hourly Forecast</h2>
+                            <div class="hourly-forecast-cards scroll"></div>                    
+                        </div>
+                        <div class="weather-daily-forecast">
+                            <h2>Daily Forecast</h2>
+                            <div class="daily-forecast-cards scroll"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="f6c45c7945423e32ef50.js"></script>
+    <script src="https://kit.fontawesome.com/98e4552128.js" crossorigin="anonymous"></script>
+    <div id="error-dialog" class="dialog-overlay" style="display: none;">
+        <div class="dialog-content">
+            <h2 id="error-message"></h2>
+            <button id="close-dialog">Close</button>
+        </div>
+    </div>
+</body>
+</html>
