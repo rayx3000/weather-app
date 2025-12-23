@@ -266,3 +266,24 @@ document.addEventListener('DOMContentLoaded', () => {
 
     fetchAndDisplayWeather(state.city, state.units);
 });
+
+function updateOptionLabels() {
+  const select = document.getElementById("unit-select");
+  if (!select) return;
+
+  const isSmallScreen = window.innerWidth <= 375;
+
+  // Loop through every option in the dropdown
+  Array.from(select.options).forEach(option => {
+    // If screen is small, use data-short. Otherwise, use data-long.
+    option.text = isSmallScreen ? option.dataset.short : option.dataset.long;
+  });
+}
+
+// Run immediately on load
+updateOptionLabels();
+
+// Run whenever the window is resized
+window.addEventListener("resize", updateOptionLabels);
+window.addEventListener("load", updateOptionLabels);
+window.addEventListener("orientationchange", updateOptionLabels);

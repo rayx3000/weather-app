@@ -54,7 +54,7 @@ const displayHourlyForecast = (forecastData, unitSymbol) => {
         const { temperature, icon, time } = forecast;
         forecastCard += `<div class="hourly-forecast-card">
                                     <span class="forecast-time">${time}</span>
-                                    ${icon}
+                                    <span class="forecast-icon">${icon}</span>
                                     <span class="forecast-temp">${temperature}${unitSymbol}</span>
                             </div>`
     });

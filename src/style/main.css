@@ -287,10 +287,196 @@
     }
 
     .daily-forecast-cards{
-        width: 65vw;
+        width: 66.2vw;
+        margin-right: 3vw;
     }
 
     .hourly-forecast-card{
         gap: 12.5vw;
     }
+}
+
+@media(max-width: 550px) {
+    .highlights-cards{
+        font-size: 0.8em;
+    }
+}
+
+@media(max-width: 500px) {
+
+    .weather-main-content > div > h2{
+        font-size: 1.2rem;
+    }
+
+    .content-title{
+        display: inline-block;
+    }
+
+    .weather-highlights h2{
+        font-size: 0.9em;
+    }
+
+    .location-name{
+        font-size: 1.8em;
+    }
+
+    .weather-condition{
+        font-size: 1em;
+    }
+
+    .location-time p{
+        font-size: 0.9em;
+    }
+
+    #temperature{
+        font-size: 0.9em;
+    }
+
+    .sun-times > div h3{
+        font-size: 1.2rem;
+    }
+
+    .sun-times > div p{
+        font-size: 1rem;
+    }
+
+
+    .highlights-cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .highlight-card h3{
+        font-size: 1.5em
+    }
+
+    .highlight-card p{
+        font-size: 1.1em;
+    }
+
+    .sun-times > div{
+        width: 35vw;
+    }
+
+    .sun-times > div h3{
+        font-size: 1.2em;
+    }
+
+    .sun-times > div p{
+        font-size: 0.9em;
+    }
+
+    .weather-sidebar h2{
+        font-size: 1.2rem;
+    
+    }
+
+}
+
+@media(max-width: 420px) {
+     .hourly-forecast-cards{
+        width: 90.5vw;
+    }
+
+    .hourly-forecast-card{
+        gap: 23.2vw;
+    }
+
+    .daily-forecast-cards{
+        width: 88.2vw;
+    }
+
+    .forecast-time{
+        white-space: nowrap;
+    }
+
+    .current-weather{
+        gap: 0.5vw;
+    }
+}
+
+
+@media(max-width: 375px) {
+    .weather-main-content > div > h2{
+        text-align: center;
+    }
+    .location-name{
+        font-size: 1.5em;
+    }
+
+    .weather-condition{
+        font-size: 0.9em;
+    }
+
+    .location-time p{
+        font-size: 0.88em;
+    }
+
+    #temperature{
+        font-size: 0.75em;
+    }
+
+    .highlights-cards{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    #weather-icon svg{
+        width: 40px;
+        height: 40px;
+    }
+
+    .sun-times > div{
+        width: 38vw;
+    }
+
+    .sun-times > div h3{
+        font-size: 1.1em;
+    }
+
+    .sun-times > div p{
+        font-size: 0.8em;
+    }
+
+    .highlight-card h3{
+        font-size: 1.2em
+    }
+
+    .highlight-card p{
+        font-size: 0.9em;
+    }
+
+}
+
+@media(max-width: 350px) {
+    .hourly-forecast-card{
+        gap: 18.5vw;
+    }
+}
+
+@media(max-width: 300px) {
+    .hourly-forecast-card, .temp-range{
+        font-size: 0.835em;
+    }
+
+    .daily-forecast-card{
+        font-size: 0.835em;
+    }
+
+     .location-name{
+        font-size: 1.1em;
+    }
+
+    .weather-condition{
+        font-size: 0.8em;
+    }
+
+    .location-time p{
+        font-size: 0.69em;
+    }
+
+    #temperature{
+        font-size: 0.5em;
+    }
+
 }

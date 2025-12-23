@@ -95,3 +95,30 @@ select:focus{
     }
 }
 
+
+@media(max-width: 550px) {
+    .input-container input{
+        width: 38.5vw;
+        padding: 3.5%;
+    }
+
+    select{
+        width: 35.5vw;
+        padding: 1.2% 3%;
+    }
+
+    .input-container button{
+        padding: 3.5% 3.95%;
+    }
+}
+
+@media(max-width: 375px) {
+    select{
+        width: 20vw;
+    }
+
+    .input-container input{
+        padding: 3.5% 5%;
+        width: 45vw;
+    }
+}
