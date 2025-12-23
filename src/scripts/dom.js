@@ -73,7 +73,7 @@ const displayDailyForecast = (forecastData, unitSymbol) => {
         const { day, date, highTemp, lowTemp, icon } = forecast;
         forecastCard += `<div class="daily-forecast-card">
                                     <span class="day-name">${day}, ${date}</span>
-                                    ${icon}
+                                    <span>${icon}</span>
                                     <div class="temp-range">
                                         <span class="temp-high">${highTemp}${unitSymbol}</span>
                                         <span class="temp-low">${lowTemp}${unitSymbol}</span>
